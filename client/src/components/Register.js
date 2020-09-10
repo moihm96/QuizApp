@@ -5,8 +5,8 @@ class Register extends Component {
   constructor() {
     super()
     this.state = {
-      first_name: '',
-      last_name: '',
+      name: '',
+     admin: false,
       email: '',
       password: '',
       errors: {}
@@ -19,11 +19,15 @@ class Register extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value })
   }
+
+  onAdminChange(){
+    this.setState({admin : document.getElementById("admin").checked})
+  }
   onSubmit(e) {
     e.preventDefault()
 
     const newUser = {
-      first_name: this.state.first_name,
+      name: this.state.name,
       last_name: this.state.last_name,
       email: this.state.email,
       password: this.state.password
@@ -42,24 +46,19 @@ class Register extends Component {
             <form noValidate onSubmit={this.onSubmit}>
               <h1 className="h3 mb-3 font-weight-normal">Register</h1>
               <div className="form-group">
-                <label htmlFor="name">First name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="first_name"
-                  placeholder="Enter your first name"
-                  value={this.state.first_name}
-                  onChange={this.onChange}
-                />
+                <label htmlFor="admin">Is an admin
+                <input type="checkbox" className= "formControl" id="admin" name= "admin" value={this.state.admin} onChange={this.onAdminChange.bind(this)}></input>
+                </label>
+                
               </div>
               <div className="form-group">
-                <label htmlFor="name">Last name</label>
+                <label htmlFor="name">Name</label>
                 <input
                   type="text"
                   className="form-control"
-                  name="last_name"
-                  placeholder="Enter your lastname name"
-                  value={this.state.last_name}
+                  name="name"
+                  placeholder="Enter your name"
+                  value={this.state.name}
                   onChange={this.onChange}
                 />
               </div>
