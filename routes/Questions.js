@@ -28,9 +28,10 @@ questions.get('/', (req, res) => {
     })
 })
 
-questions.get('/answers', (req, res) => {
+questions.get('/:id/answers', (req, res) => {
+  const id = req.params.id
     Answers.findAll({
-        where : {questions_id: req.body.questions_id}
+        where : {questions_id: id}
     }).then(data => {
         res.send(data);
     })

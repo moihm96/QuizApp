@@ -27,3 +27,27 @@ export const login = user => {
       console.log(err)
     })
 }
+
+export const getList = () => {
+  return axios
+    .get('/questions/', {
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+      return res.data
+    })
+}
+
+export const getAnswers = (id) => {
+  return axios
+    .get(
+      `/questions/${id}/answers`,
+      {
+        headers: { 'Content-Type': 'application/json' }
+      }
+    )
+    .then(res=> {
+      console.log(res.data)
+      return res.data
+    })
+}
